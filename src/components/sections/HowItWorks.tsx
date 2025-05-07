@@ -10,29 +10,34 @@ import {
 export function HowItWorks() {
   const steps = [
     {
-      title: "Describe a goal",
+      title: "Initial consultation",
       description:
-        "Simply describe what you need the system to accomplish, like 'Send monthly reports to the leadership team' or 'Validate customer KYC documents'."
+        "We start with a thorough discussion to understand your specific needs, pain points, and the workflows you want to automate."
     },
     {
-      title: "Orchestrator plans workflow",
+      title: "Proof of Concept proposal",
       description:
-        "Our AI orchestrator analyzes your request, breaks it down into steps, and determines the optimal sequence of actions to accomplish the goal."
+        "We estimate a symbolic PoC price to enforce engagement and outline the scope, timeline, and expected outcomes."
     },
     {
-      title: "Agents take action",
+      title: "Build the PoC",
       description:
-        "Specialized AI agents execute each step of the workflow, accessing your systems through secure connections, making decisions, and completing tasks."
+        "Our team develops a working prototype of the solution, focusing on your most critical workflow challenges."
     },
     {
-      title: "Output delivered",
+      title: "Identify and solve bottlenecks",
       description:
-        "The completed work is delivered to its destination, whether that's a document, email, system update, or notification to the relevant stakeholders."
+        "We analyze performance, identify bottlenecks in the process, and optimize the solution for maximum efficiency."
     },
     {
-      title: "System learns & improves",
+      title: "Compute ROI",
       description:
-        "With each iteration, plugd.ai learns from feedback and outcomes, continuously improving its performance and requiring less supervision over time."
+        "We measure and document the return on investment, comparing the automated process with your previous manual workflow."
+    },
+    {
+      title: "Production and continuous improvement",
+      description:
+        "Upon contract signing, we move the solution to production and implement ongoing fine-tuning and enhancements."
     }
   ];
 
@@ -48,8 +53,8 @@ export function HowItWorks() {
             How It Works
           </h2>
           <p className="text-muted-foreground max-w-[700px]">
-            Our platform simplifies complex workflows into a seamless process that delivers 
-            results with minimal human intervention.
+            Our engagement process is designed to deliver tangible results quickly while ensuring
+            long-term success and continuous improvement.
           </p>
         </div>
 

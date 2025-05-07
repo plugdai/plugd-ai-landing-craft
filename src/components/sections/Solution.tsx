@@ -1,28 +1,47 @@
 
 import { CheckCircle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 
 export function Solution() {
-  const features = [
+  const industries = [
     {
-      title: "Intelligent Agents",
-      description: "AI agents that understand context and execute complex workflows autonomously"
+      name: "Fintech",
+      solutions: [
+        {
+          title: "Cash Reconciliation",
+          description: "Automated matching of payments, invoices, and accounts across multiple banking systems and financial records."
+        },
+        {
+          title: "KYC Automation",
+          description: "Fully automated identity verification and compliance checks for efficient customer onboarding."
+        }
+      ]
     },
     {
-      title: "Generative AI",
-      description: "Create documents, emails, and responses with human-like quality and accuracy"
+      name: "E-commerce",
+      solutions: [
+        {
+          title: "Order Matching",
+          description: "Intelligent system that accurately pairs purchase orders with invoices and shipping data across multiple platforms."
+        },
+        {
+          title: "Catalog Onboarding",
+          description: "Automated product data standardization from various sources into a consistent structure supporting multiple languages."
+        }
+      ]
     },
     {
-      title: "RAG Technology",
-      description: "Retrieval-augmented generation for accurate, context-aware responses"
-    },
-    {
-      title: "KYC Automation",
-      description: "Fully automated identity verification and compliance checks"
-    },
-    {
-      title: "No-Code Builder",
-      description: "Create and deploy workflows without technical expertise"
+      name: "Logistics",
+      solutions: [
+        {
+          title: "Contract Generation",
+          description: "Automated creation of customized shipping and logistics agreements based on specific requirements and regulations."
+        },
+        {
+          title: "Claim Management",
+          description: "End-to-end processing of shipping claims, damage reports, and insurance documentation with minimal human intervention."
+        }
+      ]
     }
   ];
 
@@ -39,22 +58,27 @@ export function Solution() {
           </h2>
           <p className="text-muted-foreground max-w-[700px]">
             An intelligent automation platform that uses AI agents to execute full business
-            workflows with minimal human intervention.
+            workflows with minimal human intervention across multiple industries.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <Card key={index} className="hover-scale border shadow-soft">
-              <CardHeader>
-                <CardTitle>{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {industries.map((industry, industryIndex) => (
+          <div key={industryIndex} className="mb-12 last:mb-0">
+            <h3 className="text-2xl font-semibold mb-6 text-center">{industry.name}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {industry.solutions.map((solution, solutionIndex) => (
+                <Card key={solutionIndex} className="hover-scale border shadow-soft">
+                  <CardHeader>
+                    <CardTitle>{solution.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{solution.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
