@@ -5,8 +5,8 @@ import {
   Mail, 
   MessageSquare, 
   FileJson, 
-  FileExcel, 
-  FilePdf, 
+  FileSpreadsheet, 
+  FileScan, 
   FileText, 
   Brain, 
   Database, 
@@ -60,9 +60,9 @@ export function WhatWeDo() {
       title: "It arrives in every format imaginable.",
       subtitle: "Structured, semi-structured, and unstructured — we handle it all.",
       icons: [
-        { icon: FilePdf, label: "PDFs" },
+        { icon: FileScan, label: "PDFs" },
         { icon: FileJson, label: "JSON" },
-        { icon: FileExcel, label: "Excel" },
+        { icon: FileSpreadsheet, label: "Excel" },
         { icon: FileText, label: "Text" }
       ],
       description: "Contracts, invoices, API responses, spreadsheets, documents, and plain text."
