@@ -1,5 +1,5 @@
 
-import { CircleArrowRight, Phone, Users, FileSearch, Beaker, Rocket, Settings } from "lucide-react";
+import { CircleArrowRight } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -10,40 +10,29 @@ import {
 export function HowItWorks() {
   const steps = [
     {
-      title: "Initial Contact",
+      title: "Describe a goal",
       description:
-        "Reach out to us through our contact form or schedule a discovery call to discuss your automation needs and challenges.",
-      icon: Phone
+        "Simply describe what you need the system to accomplish, like 'Send monthly reports to the leadership team' or 'Validate customer KYC documents'."
     },
     {
-      title: "Discovery Meeting",
+      title: "Orchestrator plans workflow",
       description:
-        "We meet to deeply understand your use cases, identify automation opportunities, and pinpoint bottlenecks that can be solved with AI.",
-      icon: Users
+        "Our AI orchestrator analyzes your request, breaks it down into steps, and determines the optimal sequence of actions to accomplish the goal."
     },
     {
-      title: "Solution Design",
+      title: "Agents take action",
       description:
-        "Our team designs a tailored solution that addresses your specific challenges and creates a roadmap for implementation.",
-      icon: FileSearch
+        "Specialized AI agents execute each step of the workflow, accessing your systems through secure connections, making decisions, and completing tasks."
     },
     {
-      title: "Free Proof of Concept",
+      title: "Output delivered",
       description:
-        "We develop a custom, no-cost proof of concept to demonstrate the value and feasibility of your automation solution.",
-      icon: Beaker
+        "The completed work is delivered to its destination, whether that's a document, email, system update, or notification to the relevant stakeholders."
     },
     {
-      title: "Demo & Feedback",
+      title: "System learns & improves",
       description:
-        "We present the PoC, gather your feedback, and make necessary adjustments to ensure the solution meets your exact requirements.",
-      icon: Rocket
-    },
-    {
-      title: "Implementation & Continuous Improvement",
-      description:
-        "Once approved, we implement the full automation solution and provide ongoing optimization to ensure maximum efficiency and ROI.",
-      icon: Settings
+        "With each iteration, plugd.ai learns from feedback and outcomes, continuously improving its performance and requiring less supervision over time."
     }
   ];
 
@@ -56,11 +45,11 @@ export function HowItWorks() {
             <span className="text-sm font-medium">PROCESS</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">
-            How We Work
+            How It Works
           </h2>
           <p className="text-muted-foreground max-w-[700px]">
-            Our collaborative approach ensures we deliver customized automation solutions 
-            that address your specific business challenges.
+            Our platform simplifies complex workflows into a seamless process that delivers 
+            results with minimal human intervention.
           </p>
         </div>
 
@@ -70,13 +59,13 @@ export function HowItWorks() {
               <AccordionItem key={index} value={`step-${index}`}>
                 <AccordionTrigger className="text-left hover:no-underline">
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-secondary text-primary">
-                      <step.icon className="h-5 w-5" />
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-sm font-medium">
+                      {index + 1}
                     </div>
                     <h3 className="text-lg font-medium">{step.title}</h3>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="pl-14">
+                <AccordionContent className="pl-12">
                   <p className="text-muted-foreground">{step.description}</p>
                 </AccordionContent>
               </AccordionItem>

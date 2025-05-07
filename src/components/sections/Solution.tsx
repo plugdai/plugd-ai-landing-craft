@@ -1,5 +1,5 @@
 
-import { CheckCircle, FileSearch, Coins, BadgeCheck } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function Solution() {
@@ -23,18 +23,6 @@ export function Solution() {
     {
       title: "No-Code Builder",
       description: "Create and deploy workflows without technical expertise"
-    },
-    {
-      title: "Claim Management",
-      description: "Streamlined claim processing and verification with automated approvals"
-    },
-    {
-      title: "Order Matching",
-      description: "Intelligent order pairing and fulfillment optimization across systems"
-    },
-    {
-      title: "Cash Reconciliation",
-      description: "Automated financial transaction matching and discrepancy resolution"
     }
   ];
 
