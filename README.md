@@ -62,7 +62,29 @@ This project is built with:
 
 ## How can I deploy this project?
 
+### Option 1: Lovable
+
 Simply open [Lovable](https://lovable.dev/projects/0d651fdf-d958-462b-a443-5c2687077e28) and click on Share -> Publish.
+
+### Option 2: GitHub Pages
+
+This project is configured to automatically deploy to GitHub Pages using GitHub Actions:
+
+1. When you push to the `main` branch, the site will be automatically built and deployed.
+2. To manually trigger a deployment, go to the Actions tab in your GitHub repository and run the "Deploy to GitHub Pages" workflow.
+3. The site will be available at: `https://[your-github-username].github.io/plugd-ai-landing-craft/`
+
+The deployment workflow includes:
+- Building the project with the correct base path for GitHub Pages
+- Setting up client-side routing to work on GitHub Pages
+- Deploying the built assets to GitHub Pages
+
+### GitHub Pages Configuration
+
+To use GitHub Pages with this repository:
+1. Go to your repository's Settings > Pages
+2. Under "Source", select "GitHub Actions"
+3. Your site will be built and deployed automatically on pushes to main
 
 ## Can I connect a custom domain to my Lovable project?
 
@@ -71,3 +93,5 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+You can also set up a custom domain with GitHub Pages by following [GitHub's documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
