@@ -132,7 +132,9 @@ export function WhatWeDo() {
                       {(index === 0 || index === 1) && (
                         <div className="bg-primary/10 rounded-full w-36 h-36 flex items-center justify-center shadow-lg">
                           {step.icons && step.icons[0] && (
-                            <step.icons[0].icon className="h-16 w-16 text-primary" />
+                            <div>
+                              {React.createElement(step.icons[0].icon, { className: "h-16 w-16 text-primary" })}
+                            </div>
                           )}
                         </div>
                       )}
@@ -159,7 +161,6 @@ export function WhatWeDo() {
                     {(index === 0 || index === 1) && step.icons && (
                       <>
                         {step.icons.map((iconItem, i) => {
-                          const IconComponent = iconItem.icon;
                           // Calculate position around the circle
                           const angle = (i * (360 / step.icons.length)) * (Math.PI / 180);
                           const radius = 120; // Distance from center
@@ -176,7 +177,7 @@ export function WhatWeDo() {
                                 zIndex: i === 0 ? 5 : (i * 2),
                               }}
                             >
-                              <IconComponent className="h-8 w-8 text-primary/70" />
+                              {React.createElement(iconItem.icon, { className: "h-8 w-8 text-primary/70" })}
                               <span className="text-xs font-medium mt-1 block text-center">{iconItem.label}</span>
                             </div>
                           );
@@ -189,13 +190,12 @@ export function WhatWeDo() {
                       <>
                         {/* Input nodes */}
                         {workflowSteps[1].icons?.slice(0, 3).map((iconItem, i) => {
-                          const IconComponent = iconItem.icon;
                           // Position on the left side
                           const top = 25 + (i * 25);
                           
                           return (
                             <div key={`input-${i}`} className="absolute left-0 md:left-10 bg-white p-2 rounded-md shadow-sm" style={{ top: `${top}%` }}>
-                              <IconComponent className="h-6 w-6 text-primary/60" />
+                              {React.createElement(iconItem.icon, { className: "h-6 w-6 text-primary/60" })}
                               <div className="absolute top-1/2 left-full h-px w-16 md:w-24 bg-primary/20 z-0"></div>
                             </div>
                           );
