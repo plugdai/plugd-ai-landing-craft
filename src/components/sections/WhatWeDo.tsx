@@ -126,7 +126,7 @@ export function WhatWeDo() {
                 {/* Illustration Column */}
                 <div className={cn("order-2", index % 2 === 0 ? "md:order-1" : "md:order-2")}>
                   <div className="relative h-[320px] w-full flex items-center justify-center">
-                    {/* Central illustration */}
+                    {/* Central illustration - Hub */}
                     <div className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                       {/* Step 1 & 2 - Format/Channel visuals */}
                       {(index === 0 || index === 1) && (
@@ -157,15 +157,15 @@ export function WhatWeDo() {
                       )}
                     </div>
 
-                    {/* Orbiting elements */}
+                    {/* Circular ring with orbiting elements */}
                     {(index === 0 || index === 1) && step.icons && (
-                      <>
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-dashed border-primary/30">
                         {step.icons.map((iconItem, i) => {
-                          // Calculate position around the circle
+                          // Calculate position around the circle - more precisely positioned
                           const angle = (i * (360 / step.icons.length)) * (Math.PI / 180);
-                          const radius = 120; // Distance from center
-                          const top = 50 + Math.sin(angle) * radius;
-                          const left = 50 + Math.cos(angle) * radius;
+                          const radius = 95; // Smaller radius to keep within the column
+                          const top = 50 + Math.sin(angle) * radius / 64 * 100;
+                          const left = 50 + Math.cos(angle) * radius / 64 * 100;
                           
                           return (
                             <div
@@ -174,7 +174,7 @@ export function WhatWeDo() {
                               style={{
                                 top: `${top}%`,
                                 left: `${left}%`,
-                                zIndex: i === 0 ? 5 : (i * 2),
+                                zIndex: 5,
                               }}
                             >
                               {React.createElement(iconItem.icon, { className: "h-8 w-8 text-primary/70" })}
@@ -182,34 +182,41 @@ export function WhatWeDo() {
                             </div>
                           );
                         })}
-                      </>
+                      </div>
                     )}
 
-                    {/* Step 3 - AI Processing Visualization */}
+                    {/* Step 3 - AI Processing Visualization - More compact and contained */}
                     {index === 2 && (
                       <>
-                        {/* Input nodes */}
-                        {workflowSteps[1].icons?.slice(0, 3).map((iconItem, i) => {
-                          // Position on the left side
-                          const top = 25 + (i * 25);
+                        {/* Circle around the Brain */}
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-dashed border-primary/30 flex items-center justify-center">
+                          {/* Input nodes in a circular pattern */}
+                          {workflowSteps[1].icons?.slice(0, 3).map((iconItem, i) => {
+                            // Position in circle around the brain
+                            const angle = (i * 120) * (Math.PI / 180);
+                            const radius = 90; // Smaller radius to keep within the column
+                            const top = 50 + Math.sin(angle) * radius / 64 * 100;
+                            const left = 50 + Math.cos(angle) * radius / 64 * 100;
+                            
+                            return (
+                              <div 
+                                key={`input-${i}`} 
+                                className="absolute bg-white p-2 rounded-md shadow-sm transform -translate-x-1/2 -translate-y-1/2"
+                                style={{ top: `${top}%`, left: `${left}%` }}
+                              >
+                                {React.createElement(iconItem.icon, { className: "h-6 w-6 text-primary/60" })}
+                                <div className="absolute top-1/2 left-1/2 h-px w-12 bg-primary/20 z-0 rotate-[${angle * (180/Math.PI)}deg]"></div>
+                              </div>
+                            );
+                          })}
                           
-                          return (
-                            <div key={`input-${i}`} className="absolute left-0 md:left-10 bg-white p-2 rounded-md shadow-sm" style={{ top: `${top}%` }}>
-                              {React.createElement(iconItem.icon, { className: "h-6 w-6 text-primary/60" })}
-                              <div className="absolute top-1/2 left-full h-px w-16 md:w-24 bg-primary/20 z-0"></div>
-                            </div>
-                          );
-                        })}
-                        
-                        {/* Output nodes */}
-                        <div className="absolute right-0 md:right-10 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
-                          <Database className="h-6 w-6 text-primary/60" />
-                          <div className="absolute top-1/2 right-full h-px w-16 md:w-24 bg-primary/20 z-0"></div>
-                        </div>
+                          {/* Output node */}
+                          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white p-2 rounded-md shadow-sm">
+                            <Database className="h-6 w-6 text-primary/60" />
+                          </div>
 
-                        {/* Processing animation */}
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-5">
-                          <div className="flex space-x-2">
+                          {/* Processing animation */}
+                          <div className="absolute flex space-x-2">
                             <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary"></span>
                             <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary delay-150"></span>
                             <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary delay-300"></span>
@@ -218,10 +225,22 @@ export function WhatWeDo() {
                       </>
                     )}
 
-                    {/* Step 4 - Data Table in orbit */}
-                    {index === 4 && step.tableData && (
-                      <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-md">
-                        {/* This would be the table or additional visualization */}
+                    {/* Step 4 - Database with circular visualization */}
+                    {index === 3 && (
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-dashed border-primary/30">
+                        {/* Visualization elements around the circle */}
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
+                          <Check className="h-6 w-6 text-green-500" />
+                        </div>
+                        <div className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
+                          <FileScan className="h-6 w-6 text-primary/60" />
+                        </div>
+                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
+                          <FileSpreadsheet className="h-6 w-6 text-primary/60" />
+                        </div>
+                        <div className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
+                          <AlertTriangle className="h-6 w-6 text-amber-500" />
+                        </div>
                       </div>
                     )}
                   </div>
