@@ -126,123 +126,145 @@ export function WhatWeDo() {
                 {/* Illustration Column */}
                 <div className={cn("order-2", index % 2 === 0 ? "md:order-1" : "md:order-2")}>
                   <div className="relative h-[320px] w-full flex items-center justify-center">
-                    {/* Central illustration - Hub */}
-                    <div className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      {/* Step 1 & 2 - Format/Channel visuals */}
-                      {(index === 0 || index === 1) && (
-                        <div className="bg-primary/10 rounded-full w-36 h-36 flex items-center justify-center shadow-lg">
-                          {step.icons && step.icons[0] && (
-                            <div>
-                              {React.createElement(step.icons[0].icon, { className: "h-16 w-16 text-primary" })}
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Step 3 - AI Brain */}
-                      {index === 2 && (
-                        <div className="bg-primary/10 rounded-full w-36 h-36 flex items-center justify-center shadow-lg animate-pulse">
-                          <Brain className="h-16 w-16 text-primary" />
-                          <div className="absolute -top-2 -right-2 bg-white text-xs px-2 py-1 rounded-full border border-primary/20 font-semibold">
-                            AI Agents
+                    {/* Fixed-size area for the central illustration and orbiting elements */}
+                    <div className="relative w-[280px] h-[280px]">
+                      {/* Central illustration - Hub */}
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                        {/* Step 1 & 2 - Format/Channel visuals */}
+                        {(index === 0 || index === 1) && (
+                          <div className="bg-primary/10 rounded-full w-28 h-28 flex items-center justify-center shadow-lg">
+                            {step.icons && step.icons[0] && (
+                              <div>
+                                {React.createElement(step.icons[0].icon, { className: "h-12 w-12 text-primary" })}
+                              </div>
+                            )}
                           </div>
-                        </div>
-                      )}
+                        )}
 
-                      {/* Step 4 - Database */}
-                      {index === 3 && (
-                        <div className="bg-primary/10 rounded-full w-36 h-36 flex items-center justify-center shadow-lg">
-                          <Database className="h-16 w-16 text-primary" />
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Circular ring with orbiting elements */}
-                    {(index === 0 || index === 1) && step.icons && (
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-dashed border-primary/30">
-                        {step.icons.map((iconItem, i) => {
-                          // Calculate position around the circle - more precisely positioned
-                          const angle = (i * (360 / step.icons.length)) * (Math.PI / 180);
-                          const radius = 95; // Smaller radius to keep within the column
-                          const top = 50 + Math.sin(angle) * radius / 64 * 100;
-                          const left = 50 + Math.cos(angle) * radius / 64 * 100;
-                          
-                          return (
-                            <div
-                              key={`orbit-${i}`}
-                              className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-lg shadow-md hover:scale-110 transition-transform border border-primary/10"
-                              style={{
-                                top: `${top}%`,
-                                left: `${left}%`,
-                                zIndex: 5,
-                              }}
-                            >
-                              {React.createElement(iconItem.icon, { className: "h-8 w-8 text-primary/70" })}
-                              <span className="text-xs font-medium mt-1 block text-center">{iconItem.label}</span>
+                        {/* Step 3 - AI Brain */}
+                        {index === 2 && (
+                          <div className="bg-primary/10 rounded-full w-28 h-28 flex items-center justify-center shadow-lg animate-pulse">
+                            <Brain className="h-12 w-12 text-primary" />
+                            <div className="absolute -top-2 -right-2 bg-white text-xs px-2 py-1 rounded-full border border-primary/20 font-semibold">
+                              AI Agents
                             </div>
-                          );
-                        })}
-                      </div>
-                    )}
+                          </div>
+                        )}
 
-                    {/* Step 3 - AI Processing Visualization - More compact and contained */}
-                    {index === 2 && (
-                      <>
-                        {/* Circle around the Brain */}
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-dashed border-primary/30 flex items-center justify-center">
-                          {/* Input nodes in a circular pattern */}
-                          {workflowSteps[1].icons?.slice(0, 3).map((iconItem, i) => {
-                            // Position in circle around the brain
-                            const angle = (i * 120) * (Math.PI / 180);
-                            const radius = 90; // Smaller radius to keep within the column
-                            const top = 50 + Math.sin(angle) * radius / 64 * 100;
-                            const left = 50 + Math.cos(angle) * radius / 64 * 100;
+                        {/* Step 4 - Database */}
+                        {index === 3 && (
+                          <div className="bg-primary/10 rounded-full w-28 h-28 flex items-center justify-center shadow-lg">
+                            <Database className="h-12 w-12 text-primary" />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Circular ring for orbiting icons */}
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-dashed border-primary/30" />
+
+                      {/* Surrounding icons placed in a perfect circle */}
+                      {(index === 0 || index === 1) && step.icons && (
+                        <>
+                          {step.icons.map((iconItem, i) => {
+                            // Calculate position around the circle with perfect polar coordinates
+                            // Start from the top (270 degrees) and go clockwise
+                            const angleInDegrees = 270 + (i * (360 / step.icons.length));
+                            const angleInRadians = (angleInDegrees * Math.PI) / 180;
+                            
+                            // Radius of the orbit circle (slightly smaller than the container to ensure icons stay inside)
+                            const radius = 120; 
+                            
+                            // Calculate position
+                            const top = 140 + radius * Math.sin(angleInRadians);
+                            const left = 140 + radius * Math.cos(angleInRadians);
+                            
+                            return (
+                              <div
+                                key={`orbit-${i}`}
+                                className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-white p-2.5 rounded-lg shadow-md hover:scale-110 transition-transform border border-primary/10 z-20"
+                                style={{
+                                  top: `${top}px`,
+                                  left: `${left}px`,
+                                }}
+                              >
+                                {React.createElement(iconItem.icon, { className: "h-6 w-6 text-primary/70" })}
+                                <span className="text-xs font-medium mt-1 block text-center">{iconItem.label}</span>
+                              </div>
+                            );
+                          })}
+                        </>
+                      )}
+
+                      {/* Step 3 - AI Processing Visualization */}
+                      {index === 2 && (
+                        <>
+                          {/* Input nodes in a perfect circle */}
+                          {[...Array(6)].map((_, i) => {
+                            // Calculate positions in a perfect circle
+                            const angleInDegrees = (i * 60); // 6 items, 360/6 = 60 degrees apart
+                            const angleInRadians = (angleInDegrees * Math.PI) / 180;
+                            
+                            const radius = 120;
+                            const top = 140 + radius * Math.sin(angleInRadians);
+                            const left = 140 + radius * Math.cos(angleInRadians);
+                            
+                            // Different icons for variety
+                            const icons = [FileScan, FileJson, Mail, Cloud, MessageSquare, FileText];
+                            const IconComponent = icons[i];
                             
                             return (
                               <div 
                                 key={`input-${i}`} 
-                                className="absolute bg-white p-2 rounded-md shadow-sm transform -translate-x-1/2 -translate-y-1/2"
-                                style={{ top: `${top}%`, left: `${left}%` }}
+                                className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md shadow-sm z-20"
+                                style={{ top: `${top}px`, left: `${left}px` }}
                               >
-                                {React.createElement(iconItem.icon, { className: "h-6 w-6 text-primary/60" })}
-                                <div className="absolute top-1/2 left-1/2 h-px w-12 bg-primary/20 z-0 rotate-[${angle * (180/Math.PI)}deg]"></div>
+                                <IconComponent className="h-6 w-6 text-primary/60" />
+                                <div className="absolute top-1/2 left-1/2 h-0.5 w-14 bg-primary/20"
+                                     style={{ 
+                                       transform: `rotate(${angleInDegrees + 90}deg) translateX(-50%)`,
+                                       transformOrigin: '0 0'
+                                     }}></div>
                               </div>
                             );
                           })}
                           
-                          {/* Output node */}
-                          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white p-2 rounded-md shadow-sm">
-                            <Database className="h-6 w-6 text-primary/60" />
-                          </div>
-
                           {/* Processing animation */}
-                          <div className="absolute flex space-x-2">
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-2">
                             <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary"></span>
                             <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary delay-150"></span>
                             <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary delay-300"></span>
                           </div>
-                        </div>
-                      </>
-                    )}
+                        </>
+                      )}
 
-                    {/* Step 4 - Database with circular visualization */}
-                    {index === 3 && (
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-dashed border-primary/30">
-                        {/* Visualization elements around the circle */}
-                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
-                          <Check className="h-6 w-6 text-green-500" />
-                        </div>
-                        <div className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
-                          <FileScan className="h-6 w-6 text-primary/60" />
-                        </div>
-                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
-                          <FileSpreadsheet className="h-6 w-6 text-primary/60" />
-                        </div>
-                        <div className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md shadow-sm">
-                          <AlertTriangle className="h-6 w-6 text-amber-500" />
-                        </div>
-                      </div>
-                    )}
+                      {/* Step 4 - Database with circular visualization */}
+                      {index === 3 && (
+                        <>
+                          {/* Visualization elements around the circle */}
+                          {[
+                            { icon: Check, angle: 0, color: "text-green-500" },
+                            { icon: FileScan, angle: 90, color: "text-primary/60" },
+                            { icon: FileSpreadsheet, angle: 180, color: "text-primary/60" },
+                            { icon: AlertTriangle, angle: 270, color: "text-amber-500" }
+                          ].map((item, i) => {
+                            const angleInRadians = (item.angle * Math.PI) / 180;
+                            const radius = 120;
+                            const top = 140 + radius * Math.sin(angleInRadians);
+                            const left = 140 + radius * Math.cos(angleInRadians);
+                            
+                            return (
+                              <div
+                                key={`status-${i}`}
+                                className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md shadow-sm z-20"
+                                style={{ top: `${top}px`, left: `${left}px` }}
+                              >
+                                {React.createElement(item.icon, { className: `h-6 w-6 ${item.color}` })}
+                              </div>
+                            );
+                          })}
+                        </>
+                      )}
+                    </div>
                   </div>
 
                   {/* Example hint text below visualization */}
