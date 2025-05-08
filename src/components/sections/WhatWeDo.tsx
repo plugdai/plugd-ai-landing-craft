@@ -12,11 +12,20 @@ import {
   Database, 
   Check, 
   AlertTriangle, 
-  CircleArrowRight 
+  CircleArrowRight,
+  ArrowRight
 } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardFooter, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
 
 export function WhatWeDo() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -46,6 +55,7 @@ export function WhatWeDo() {
   const workflowSteps = [
     {
       id: "step1",
+      number: "01",
       title: "Your business runs on disconnected channels.",
       subtitle: "We start by pulling data from everywhere you're already working.",
       icons: [
@@ -57,6 +67,7 @@ export function WhatWeDo() {
     },
     {
       id: "step2",
+      number: "02",
       title: "It arrives in every format imaginable.",
       subtitle: "Structured, semi-structured, and unstructured — we handle it all.",
       icons: [
@@ -69,13 +80,15 @@ export function WhatWeDo() {
     },
     {
       id: "step3",
+      number: "03",
       title: "Our AI-powered workflow takes over.",
-      subtitle: "It reads, interprets, and structures the chaos.",
+      subtitle: "Autonomous agents read, interpret, and structure the chaos.",
       icon: Brain,
-      description: "Our engine extracts fields, detects anomalies, and routes decisions automatically."
+      description: "Our AI agents extract fields, detect anomalies, and route decisions automatically with no human intervention required."
     },
     {
       id: "step4",
+      number: "04",
       title: "Now it's usable, clean, and ready to act.",
       subtitle: "A centralized view where each row is clean, validated, and ready for decisions.",
       icon: Database,
@@ -101,235 +114,175 @@ export function WhatWeDo() {
           </p>
         </div>
 
-        <div className="space-y-32 md:space-y-40" ref={sectionRef}>
-          {/* Step 1: Chaos from Many Sources */}
-          <div 
-            ref={(el) => stepsRefs.current[0] = el}
-            className="opacity-0 transition-all duration-700 ease-in-out"
-          >
-            <div className="flex flex-col items-center">
-              <h3 className="text-2xl md:text-3xl font-semibold mb-3">{workflowSteps[0].title}</h3>
-              <p className="text-lg text-muted-foreground mb-12">{workflowSteps[0].subtitle}</p>
-              
-              <div className="relative h-[300px] w-full max-w-3xl mb-8">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 rounded-full bg-background shadow-lg flex items-center justify-center z-10">
-                    <Database className="h-12 w-12 text-primary/80" />
+        <div className="space-y-16 md:space-y-24" ref={sectionRef}>
+          {/* Step Cards */}
+          <div className="grid grid-cols-1 gap-8 md:gap-12 relative">
+            {/* Connecting line between cards */}
+            <div className="absolute top-[6rem] left-[1.5rem] md:left-1/2 h-[calc(100%-12rem)] w-px bg-primary/20 md:block hidden"></div>
+            
+            {workflowSteps.map((step, index) => (
+              <div 
+                key={step.id}
+                ref={(el) => stepsRefs.current[index] = el}
+                className="opacity-0 transition-all duration-700 ease-in-out"
+              >
+                <Card className="relative border-primary/10 bg-white shadow-lg hover:shadow-xl transition-shadow">
+                  {/* Step number indicator */}
+                  <div className="absolute -left-4 top-6 md:left-[-1.5rem] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold z-10">
+                    {step.number}
                   </div>
-                </div>
-
-                {workflowSteps[0].icons.map((iconItem, i) => {
-                  const IconComponent = iconItem.icon;
-                  const positions = [
-                    "top-10 left-[20%]", 
-                    "top-1/2 left-[10%] -translate-y-1/2", 
-                    "bottom-10 left-[25%]",
-                    "top-10 right-[20%]",
-                    "top-1/2 right-[10%] -translate-y-1/2",
-                    "bottom-10 right-[25%]"
-                  ];
-                  const delayClass = `animation-delay-${(i+1)*100}`;
                   
-                  return (
-                    <div 
-                      key={`icon-${i}`} 
-                      className={cn(
-                        "absolute flex items-center justify-center animate-pulse",
-                        positions[i % positions.length],
-                        delayClass
-                      )}
-                    >
-                      <div className="bg-white p-4 rounded-full shadow-md">
-                        <IconComponent className="h-8 w-8 text-primary/80" />
+                  {/* Card content */}
+                  <CardHeader>
+                    <CardTitle className="text-2xl md:text-3xl">{step.title}</CardTitle>
+                    <CardDescription className="text-lg">{step.subtitle}</CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent>
+                    {/* Step 1 & 2 - Icons display */}
+                    {(index === 0 || index === 1) && (
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        {step.icons?.map((iconItem, i) => {
+                          const IconComponent = iconItem.icon;
+                          const rotateClass = [
+                            "rotate-[-3deg]", 
+                            "rotate-[2deg]", 
+                            "rotate-[-1deg]", 
+                            "rotate-[3deg]"
+                          ];
+                          
+                          return (
+                            <div
+                              key={`format-${i}`}
+                              className={cn(
+                                "bg-white border-2 p-6 rounded-lg shadow-sm flex flex-col items-center hover:scale-105 transition-transform",
+                                rotateClass[i % rotateClass.length]
+                              )}
+                            >
+                              <IconComponent className="h-12 w-12 mb-4 text-primary/70" />
+                              <span className="font-medium">{iconItem.label}</span>
+                            </div>
+                          );
+                        })}
                       </div>
-                      <span className="text-xs font-medium ml-2">{iconItem.label}</span>
-                    </div>
-                  );
-                })}
-                
-                {[...Array(8)].map((_, i) => {
-                  const angle = (Math.PI * 2 * i) / 8;
-                  const x = Math.cos(angle) * 120 + 50; // Percentage
-                  const y = Math.sin(angle) * 120 + 50; // Percentage
-                  
-                  return (
-                    <div 
-                      key={`line-${i}`}
-                      className="absolute bg-muted h-[2px] origin-center"
-                      style={{
-                        width: '100px',
-                        left: `${x}px`,
-                        top: `${y}px`,
-                        transform: `rotate(${angle * (180/Math.PI)}deg)`
-                      }}
-                    />
-                  );
-                })}
-              </div>
-
-              <p className="text-sm text-muted-foreground text-center max-w-2xl">
-                {workflowSteps[0].description}
-              </p>
-            </div>
-          </div>
-
-          {/* Step 2: Format Hell */}
-          <div 
-            ref={(el) => stepsRefs.current[1] = el}
-            className="opacity-0 transition-all duration-700 ease-in-out"
-          >
-            <div className="flex flex-col items-center">
-              <h3 className="text-2xl md:text-3xl font-semibold mb-3">{workflowSteps[1].title}</h3>
-              <p className="text-lg text-muted-foreground mb-12">{workflowSteps[1].subtitle}</p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto mb-8">
-                {workflowSteps[1].icons.map((iconItem, i) => {
-                  const IconComponent = iconItem.icon;
-                  const rotateClass = [
-                    "rotate-[-5deg]", 
-                    "rotate-[3deg]", 
-                    "rotate-[-2deg]", 
-                    "rotate-[4deg]"
-                  ];
-                  
-                  return (
-                    <div
-                      key={`format-${i}`}
-                      className={cn(
-                        "bg-white border p-6 rounded-lg shadow-md flex flex-col items-center hover:scale-105 transition-transform",
-                        rotateClass[i % rotateClass.length]
-                      )}
-                    >
-                      <IconComponent className="h-12 w-12 mb-4 text-primary/80" />
-                      <span className="font-medium">{iconItem.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <p className="text-sm text-muted-foreground text-center max-w-2xl">
-                {workflowSteps[1].description}
-              </p>
-            </div>
-          </div>
-
-          {/* Step 3: AI Workflow Engine */}
-          <div 
-            ref={(el) => stepsRefs.current[2] = el}
-            className="opacity-0 transition-all duration-700 ease-in-out"
-          >
-            <div className="flex flex-col items-center">
-              <h3 className="text-2xl md:text-3xl font-semibold mb-3">{workflowSteps[2].title}</h3>
-              <p className="text-lg text-muted-foreground mb-12">{workflowSteps[2].subtitle}</p>
-              
-              <div className="w-full max-w-3xl mb-12">
-                <div className="flex flex-col items-center">
-                  <div className="relative w-full h-[200px] mb-8">
-                    {/* Input Files */}
-                    <div className="absolute top-0 left-0 w-full flex justify-around">
-                      {workflowSteps[1].icons.map((iconItem, i) => {
-                        const IconComponent = iconItem.icon;
-                        return (
-                          <div key={`input-${i}`} className="flex flex-col items-center">
-                            <IconComponent className="h-8 w-8 text-primary/60" />
-                            <div className="h-16 border-l border-dashed border-primary/30 mt-2"></div>
+                    )}
+                    
+                    {/* Step 3 - AI Brain */}
+                    {index === 2 && (
+                      <div className="w-full max-w-3xl mx-auto mb-8">
+                        <div className="relative h-[220px]">
+                          {/* Input Files */}
+                          <div className="absolute top-0 left-0 w-full flex justify-around">
+                            {workflowSteps[1].icons?.map((iconItem, i) => {
+                              const IconComponent = iconItem.icon;
+                              return (
+                                <div key={`input-${i}`} className="flex flex-col items-center">
+                                  <IconComponent className="h-8 w-8 text-primary/60" />
+                                  <div className="h-16 border-l border-dashed border-primary/30 mt-2"></div>
+                                </div>
+                              );
+                            })}
                           </div>
-                        );
-                      })}
-                    </div>
-                    
-                    {/* AI Brain */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary/10 rounded-full p-6 animate-pulse border border-primary/20 shadow-lg">
-                      <Brain className="h-16 w-16 text-primary" />
-                    </div>
-                    
-                    {/* Output Flow */}
-                    <div className="absolute bottom-0 left-0 w-full flex justify-center items-end">
-                      <div className="flex flex-col items-center">
-                        <div className="h-16 border-l border-dashed border-primary/30 mb-2"></div>
-                        <CircleArrowRight className="h-8 w-8 text-primary" />
+                          
+                          {/* AI Agents visualization */}
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary/10 rounded-2xl p-8 animate-pulse border border-primary/20 shadow-lg">
+                            <div className="relative">
+                              <Brain className="h-16 w-16 text-primary" />
+                              <div className="absolute -top-2 -right-2 bg-white text-xs px-2 py-1 rounded-full border border-primary/20 font-semibold">
+                                Autonomous Agents
+                              </div>
+                              <div className="mt-2 flex space-x-2 justify-center">
+                                <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary"></span>
+                                <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary delay-150"></span>
+                                <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary delay-300"></span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Output Flow */}
+                          <div className="absolute bottom-0 left-0 w-full flex justify-center items-end">
+                            <div className="flex flex-col items-center">
+                              <div className="h-16 border-l border-dashed border-primary/30 mb-2"></div>
+                              <CircleArrowRight className="h-8 w-8 text-primary" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    )}
                     
-                    {/* Processing Lines */}
-                    <div className="absolute top-1/4 left-0 w-full flex justify-around">
-                      {[...Array(4)].map((_, i) => (
-                        <div 
-                          key={`line-${i}`} 
-                          className="w-px h-12 bg-gradient-to-b from-transparent via-primary/30 to-primary/10"
-                        ></div>
-                      ))}
-                    </div>
-                  </div>
+                    {/* Step 4 - Data Table */}
+                    {index === 3 && (
+                      <div className="w-full max-w-3xl mx-auto rounded-xl border shadow-md bg-card overflow-hidden mb-6">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>ID</TableHead>
+                              <TableHead>Source</TableHead>
+                              <TableHead>Type</TableHead>
+                              <TableHead>Amount</TableHead>
+                              <TableHead>Status</TableHead>
+                              <TableHead>Action</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {tableData.map((row, i) => (
+                              <TableRow key={`data-row-${i}`}>
+                                <TableCell className="font-medium">{row.id}</TableCell>
+                                <TableCell>{row.source}</TableCell>
+                                <TableCell>{row.type}</TableCell>
+                                <TableCell>{row.amount}</TableCell>
+                                <TableCell>
+                                  {row.status === "Auto-Approved" ? (
+                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                      <Check className="w-3 h-3 mr-1" />
+                                      {row.status}
+                                    </span>
+                                  ) : (
+                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                      <AlertTriangle className="w-3 h-3 mr-1" />
+                                      {row.status}
+                                    </span>
+                                  )}
+                                </TableCell>
+                                <TableCell>
+                                  {row.status === "Auto-Approved" ? (
+                                    <span className="text-sm text-muted-foreground">{row.action}</span>
+                                  ) : (
+                                    <Button size="sm" variant="outline">
+                                      {row.action}
+                                    </Button>
+                                  )}
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    )}
+                    
+                    <p className="text-sm text-muted-foreground text-center">
+                      {step.description}
+                    </p>
+                  </CardContent>
                   
-                  <p className="text-sm text-muted-foreground text-center max-w-2xl">
-                    {workflowSteps[2].description}
-                  </p>
-                </div>
+                  {index < workflowSteps.length - 1 && (
+                    <CardFooter className="flex justify-center pb-6">
+                      <div className="flex items-center text-primary/60">
+                        <span className="text-sm mr-2">Next</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </CardFooter>
+                  )}
+                </Card>
+                
+                {/* Arrow connecting to next card on mobile */}
+                {index < workflowSteps.length - 1 && (
+                  <div className="flex justify-center my-4 md:hidden">
+                    <div className="w-px h-8 bg-primary/20"></div>
+                  </div>
+                )}
               </div>
-            </div>
-          </div>
-
-          {/* Step 4: Structured, Actionable Data */}
-          <div 
-            ref={(el) => stepsRefs.current[3] = el}
-            className="opacity-0 transition-all duration-700 ease-in-out mb-12"
-          >
-            <div className="flex flex-col items-center">
-              <h3 className="text-2xl md:text-3xl font-semibold mb-3">{workflowSteps[3].title}</h3>
-              <p className="text-lg text-muted-foreground mb-12">{workflowSteps[3].subtitle}</p>
-              
-              <div className="w-full max-w-3xl rounded-xl border shadow-lg bg-card overflow-hidden mb-8">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>ID</TableHead>
-                      <TableHead>Source</TableHead>
-                      <TableHead>Type</TableHead>
-                      <TableHead>Amount</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Action</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {tableData.map((row, i) => (
-                      <TableRow key={`data-row-${i}`}>
-                        <TableCell className="font-medium">{row.id}</TableCell>
-                        <TableCell>{row.source}</TableCell>
-                        <TableCell>{row.type}</TableCell>
-                        <TableCell>{row.amount}</TableCell>
-                        <TableCell>
-                          {row.status === "Auto-Approved" ? (
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                              <Check className="w-3 h-3 mr-1" />
-                              {row.status}
-                            </span>
-                          ) : (
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
-                              <AlertTriangle className="w-3 h-3 mr-1" />
-                              {row.status}
-                            </span>
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          {row.status === "Auto-Approved" ? (
-                            <span className="text-sm text-muted-foreground">{row.action}</span>
-                          ) : (
-                            <Button size="sm" variant="outline">
-                              {row.action}
-                            </Button>
-                          )}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-
-              <p className="text-sm text-muted-foreground text-center max-w-2xl">
-                {workflowSteps[3].description}
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
