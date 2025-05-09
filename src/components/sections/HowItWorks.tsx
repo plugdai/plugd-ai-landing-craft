@@ -10,35 +10,35 @@ import {
 export function HowItWorks() {
   const steps = [
     {
-      title: "Initial consultation",
+      title: "Understand Your Workflow",
       description:
-        "We start with a thorough discussion to understand your specific needs, pain points, and the workflows you want to automate."
+        "We begin by learning how your team operates — what slows you down, what tools you use, and where automation can help the most."
     },
     {
-      title: "Proof of Concept proposal",
+      title: "Design the Right Solution",
       description:
-        "We estimate a symbolic PoC price to enforce engagement and outline the scope, timeline, and expected outcomes."
+        "Based on your needs, we craft a clear and simple plan to automate your workflows using our AI-powered platform."
     },
     {
-      title: "Build the PoC",
+      title: "Build a Live Prototype",
       description:
-        "Our team develops a working prototype of the solution, focusing on your most critical workflow challenges."
+        "We quickly develop a working version tailored to your most important process, so you can see real results early on."
     },
     {
-      title: "Identify and solve bottlenecks",
+      title: "Tweak and Improve",
       description:
-        "We analyze performance, identify bottlenecks in the process, and optimize the solution for maximum efficiency."
+        "Once it’s running, we gather feedback, spot any friction points, and make smart adjustments to ensure everything runs smoothly."
     },
     {
-      title: "Compute ROI",
+      title: "Go Live with Confidence",
       description:
-        "We measure and document the return on investment, comparing the automated process with your previous manual workflow."
+        "We deploy your solution and make sure your team is ready to use it — no disruption, just clarity and speed."
     },
     {
-      title: "Production and continuous improvement",
+      title: "Grow with You",
       description:
-        "Upon contract signing, we move the solution to production and implement ongoing fine-tuning and enhancements."
-    }
+        "As your needs evolve, so does the automation. We continuously fine-tune and expand the system to support your long-term goals."
+    } 
   ];
 
   return (
@@ -53,8 +53,7 @@ export function HowItWorks() {
             How It Works
           </h2>
           <p className="text-muted-foreground max-w-[700px]">
-            Our engagement process is designed to deliver tangible results quickly while ensuring
-            long-term success and continuous improvement.
+            We move fast to solve real problems from day one — and keep improving your workflows as your business grows.
           </p>
         </div>
 
