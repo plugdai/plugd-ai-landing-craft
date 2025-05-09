@@ -285,24 +285,11 @@ export function WhatWeDo() {
                 {/* Text/Description Column with improved spacing */}
                 <div className={cn("order-1", index % 2 === 0 ? "md:order-2" : "md:order-1")}>
                   <div className="max-w-lg mx-auto md:mx-0">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-3 flex items-center">
-                      <span className="text-primary mr-4">{step.number}.</span>
-                      <span>{step.title}</span>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                      {step.title}
                     </h3>
                     <p className="text-lg text-muted-foreground mb-6">{step.subtitle}</p>
                     <p className="text-muted-foreground">{step.description}</p>
-                    
-                    {index === 2 && (
-                      <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/10">
-                        <h4 className="font-semibold flex items-center">
-                          <Brain className="w-5 h-5 mr-2 text-primary" />
-                          Autonomous AI Agents
-                        </h4>
-                        <p className="text-sm mt-2">
-                          Our AI agents extract fields, detect anomalies, and route decisions automatically with no human intervention required.
-                        </p>
-                      </div>
-                    )}
                   </div>
                 </div>
               </>
