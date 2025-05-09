@@ -132,13 +132,13 @@ export function SolutionJourneys() {
           </div>
           
           {industries.map((industry) => (
-            <TabsContent key={industry.name} value={industry.name} className="opacity-0 transition-opacity duration-500">
+            <TabsContent key={industry.name} value={industry.name} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {industry.useCases.map((useCase, index) => {
                   const Icon = useCase.icon;
                   
                   return (
-                    <Card key={index} className="overflow-hidden border shadow-soft">
+                    <Card key={index} className="overflow-hidden border shadow-soft hover-scale">
                       <div className="bg-primary/5 p-6 border-b">
                         <div className="flex justify-between items-start">
                           <div>
