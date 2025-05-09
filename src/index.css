@@ -93,6 +93,10 @@
   .text-gradient-primary {
     @apply bg-gradient-to-br from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent;
   }
+  
+  .shadow-soft {
+    @apply shadow-[0_4px_15px_-3px_rgba(0,0,0,0.05)];
+  }
 }
 
 @keyframes fade-in {
