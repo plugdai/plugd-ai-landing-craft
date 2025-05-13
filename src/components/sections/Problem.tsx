@@ -60,7 +60,7 @@ export function Problem() {
   ];
 
   return (
-    <section id="problems" className="py-20 md:py-32 bg-destructive/5">
+    <section id="problems" className="py-20 md:py-32 bg-destructive/5 dark:bg-destructive/10">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
@@ -87,7 +87,8 @@ export function Problem() {
                 className={cn(
                   "border-dashed border-destructive/40 opacity-0 transform rotate-1",
                   "hover:rotate-0 transition-all duration-300",
-                  "bg-gradient-to-br from-white to-destructive/5"
+                  "bg-gradient-to-br from-background to-destructive/5 dark:from-background dark:to-destructive/10",
+                  "dark:border-destructive/30"
                 )}
               >
                 <CardHeader className="flex flex-col items-center">

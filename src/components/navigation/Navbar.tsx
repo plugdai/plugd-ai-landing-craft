@@ -5,11 +5,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
+  NavigationMenuItem,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -46,43 +43,9 @@ export function Navbar() {
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm">Solutions</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    <li>
-                      <Link to="/usecases/fintech-kyc" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Fintech KYC</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Streamline customer identification and verification
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/usecases/ecommerce-catalog" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">E-commerce Catalog</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Automate product data enrichment
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/usecases/logistics-contract" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Logistics Contracts</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Streamline contract processing and management
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <a href="#solutions" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">View All Solutions</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Explore our full range of industry solutions
-                        </p>
-                      </a>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
+                <a href="#solutions" className={cn(navigationMenuTriggerStyle(), "text-sm")}>
+                  Solutions
+                </a>
               </NavigationMenuItem>
               
               <NavigationMenuItem>
@@ -92,43 +55,9 @@ export function Navbar() {
               </NavigationMenuItem>
               
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm">Use Cases</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-2">
-                    <li>
-                      <Link to="/usecases/fintech-payment" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Payment Processing</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Streamline payment reconciliation workflows
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/usecases/ecommerce-order" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Order Processing</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Automate order handling and fulfillment
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/usecases/logistics-claim" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Claims Processing</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Automate and streamline claims management
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <a href="#use-cases" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">View All Use Cases</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Explore our complete portfolio of solutions
-                        </p>
-                      </a>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
+                <a href="#use-cases" className={cn(navigationMenuTriggerStyle(), "text-sm")}>
+                  Use Cases
+                </a>
               </NavigationMenuItem>
               
               <NavigationMenuItem>

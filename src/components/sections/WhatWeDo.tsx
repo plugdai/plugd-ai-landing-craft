@@ -50,7 +50,7 @@ const CircleVisualization = ({ centralIcon, surroundingIcons }: {
       <div className="relative w-[280px] h-[280px]">
         {/* Central illustration - Hub */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="bg-primary/10 rounded-full w-28 h-28 flex items-center justify-center shadow-lg">
+          <div className="bg-primary/10 dark:bg-primary/20 rounded-full w-28 h-28 flex items-center justify-center shadow-lg">
             <CentralIcon className="h-12 w-12 text-primary" />
           </div>
         </div>
@@ -78,7 +78,7 @@ const CircleVisualization = ({ centralIcon, surroundingIcons }: {
               return (
                 <div
                   key={`orbit-${i}`}
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md border border-primary/10 z-20"
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-background dark:bg-background p-2 rounded-full shadow-md border border-primary/10 z-20"
                   style={{
                     top: `${top}px`,
                     left: `${left}px`,
@@ -194,7 +194,7 @@ export function WhatWeDo() {
   ];
 
   return (
-    <section id="what-we-do" className="py-16 md:py-24 overflow-hidden bg-gradient-to-b from-white to-secondary/20">
+    <section id="what-we-do" className="py-16 md:py-24 overflow-hidden bg-gradient-to-b from-background to-secondary/20 dark:from-background dark:to-secondary/10">
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">
@@ -217,7 +217,7 @@ export function WhatWeDo() {
             >
               {/* Step number indicator - with improved spacing */}
               <div className="absolute -top-10 left-0 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
                   <span className="text-2xl font-bold text-primary">{step.number}</span>
                 </div>
               </div>
@@ -254,12 +254,12 @@ export function WhatWeDo() {
                               <TableCell>{row.amount}</TableCell>
                               <TableCell>
                                 {row.status === "Auto-Approved" ? (
-                                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
                                     <Check className="w-3 h-3 mr-1" />
                                     {row.status}
                                   </span>
                                 ) : (
-                                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100">
                                     <AlertTriangle className="w-3 h-3 mr-1" />
                                     {row.status}
                                   </span>
