@@ -17,12 +17,16 @@ const Index = () => {
       <main>
         <Hero />
         <Problem />
-        <WhatWeDo />
-        <SolutionJourneys />
+        <div id="solutions">
+          <WhatWeDo />
+          <SolutionJourneys />
+        </div>
         <HowItWorks />
         <Benefits />
+        <div id="use-cases">
+          <Vision />
+        </div>
         <Enterprise />
-        <Vision />
         <Cta />
       </main>
       
@@ -38,10 +42,10 @@ const Index = () => {
             <div>
               <h3 className="text-sm font-medium mb-4">Product</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="text-sm text-muted-foreground hover:text-primary">Features</a></li>
-                <li><a href="#" className="text-sm text-muted-foreground hover:text-primary">Use Cases</a></li>
+                <li><a href="#solutions" className="text-sm text-muted-foreground hover:text-primary">Features</a></li>
+                <li><a href="#use-cases" className="text-sm text-muted-foreground hover:text-primary">Use Cases</a></li>
                 <li><a href="#" className="text-sm text-muted-foreground hover:text-primary">Pricing</a></li>
-                <li><a href="#" className="text-sm text-muted-foreground hover:text-primary">Security</a></li>
+                <li><a href="#enterprise" className="text-sm text-muted-foreground hover:text-primary">Security</a></li>
               </ul>
             </div>
             <div>
@@ -85,6 +89,6 @@ const Index = () => {
       </footer>
     </div>
   );
-};
+}
 
 export default Index;
