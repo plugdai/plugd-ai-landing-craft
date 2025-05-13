@@ -1,9 +1,11 @@
 
-import { FileCheck, CheckCircle, Zap, X } from "lucide-react";
+import { FileCheck, CheckCircle, Zap, X, ArrowRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export function SolutionJourneys() {
   const solutionsRef = useRef<HTMLDivElement>(null);
@@ -42,6 +44,7 @@ export function SolutionJourneys() {
           solution: "AI-powered document analysis and verification",
           impact: "90% reduction in processing time",
           icon: FileCheck,
+          link: "/usecases/fintech-kyc"
         },
         {
           title: "Payment Reconciliation",
@@ -50,6 +53,7 @@ export function SolutionJourneys() {
           solution: "Automated cross-system matching and validation",
           impact: "98% automation rate for standard transactions",
           icon: CheckCircle,
+          link: "/usecases/fintech-payment"
         }
       ]
     },
@@ -64,6 +68,7 @@ export function SolutionJourneys() {
           solution: "Multi-format data standardization engine",
           impact: "From weeks to hours for catalog updates",
           icon: FileCheck,
+          link: "/usecases/ecommerce-catalog"
         },
         {
           title: "Order Matching",
@@ -72,6 +77,7 @@ export function SolutionJourneys() {
           solution: "Integrated order validation workflow",
           impact: "75% reduction in order processing exceptions",
           icon: Zap,
+          link: "/usecases/ecommerce-order"
         }
       ]
     },
@@ -86,6 +92,7 @@ export function SolutionJourneys() {
           solution: "Dynamic template system with compliance checks",
           impact: "Contract generation time reduced by 85%",
           icon: FileCheck,
+          link: "/usecases/logistics-contract"
         },
         {
           title: "Claim Management",
@@ -94,6 +101,7 @@ export function SolutionJourneys() {
           solution: "AI-powered damage assessment and routing",
           impact: "Claims processed 6x faster than manual review",
           icon: Zap,
+          link: "/usecases/logistics-claim"
         }
       ]
     }
@@ -179,6 +187,15 @@ export function SolutionJourneys() {
                         <span className="text-sm font-semibold">Impact:</span>
                         <span className="text-sm font-medium text-primary">{useCase.impact}</span>
                       </CardFooter>
+
+                      <div className="border-t p-4">
+                        <Link to={useCase.link} className="w-full">
+                          <Button variant="outline" className="w-full">
+                            View detailed case study
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
+                      </div>
                     </Card>
                   );
                 })}
